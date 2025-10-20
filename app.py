@@ -71,6 +71,10 @@ def scrape_links_fast(search_results):
     return scraped_data
 
 # ------------------ Endpoint ------------------
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Demanual AI LinkedIn Post Generator API! It works! (for now....)"}
+
 @app.post("/generate-post")
 def generate_post(request: TopicRequest):
     topic = request.topic
