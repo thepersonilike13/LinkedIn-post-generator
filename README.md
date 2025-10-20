@@ -5,7 +5,7 @@ Demanual AI is a FastAPI-based application that automatically generates professi
 
 ---
 
-## Features
+## Features: 
 
 - Accepts a topic and searches for recent news/articles.
     
