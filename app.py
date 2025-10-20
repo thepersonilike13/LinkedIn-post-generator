@@ -136,3 +136,7 @@ Please generate a professional LinkedIn post summarizing these articles.
         # "image_suggestion": None  # Optional: parse from LLM if you include image instruction
     }
 
+# ------------------ Run (for local testing) ------------------
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
