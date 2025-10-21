@@ -48,7 +48,7 @@ Demanual AI is a FastAPI-based application that automatically generates professi
 1. Clone the repository:
     
     ```bash
-    git clone [<repo_url>](https://github.com/thepersonilike13/LinkedIn-post-generator.git)
+    git clone https://github.com/thepersonilike13/LinkedIn-post-generator.git
     cd LinkedIn-post-generator
     ```
     
@@ -59,7 +59,7 @@ Demanual AI is a FastAPI-based application that automatically generates professi
     source venv/bin/activate   # Linux/macOS
     venv\Scripts\activate      # Windows
     
-    pip install fastapi uvicorn requests beautifulsoup4 python-dotenv langchain langchain_core langchain_community
+    pip install -r requirements.txt
     ```
     
 3. Create a `.env` file in the root folder and add your API keys:
