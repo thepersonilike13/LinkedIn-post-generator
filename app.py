@@ -41,34 +41,7 @@ class TopicRequest(BaseModel):
     topic: str
 
 # ------------------ Helper functions ------------------
-def scrape_page(url):
-    """Scrape the main textual content from a single page."""
-    try:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        r = requests.get(url, headers=headers, timeout=5)
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, "html.parser")
-        
-        article = soup.find("article")
-        if article:
-            text = " ".join(p.get_text(strip=True) for p in article.find_all("p"))
-        else:
-            text = " ".join(p.get_text(strip=True) for p in soup.find_all("p"))
-        
-        return text
-    except Exception as e:
-        print(f"Failed to scrape {url}: {e}")
-        return None
 
-def scrape_links_fast(search_results):
-    """Scrape all links from search results quickly (no recursion)."""
-    scraped_data = {}
-    for result in search_results:
-        url = result.get("link")
-        if url:
-            content = scrape_page(url)
-            scraped_data[url] = content
-    return scraped_data
 
 # ------------------ Endpoint -----------------
 @app.get("/")
@@ -77,6 +50,34 @@ def read_root():
 
 @app.post("/generate-post")
 def generate_post(request: TopicRequest):
+    def scrape_page(url):
+        """Scrape the main textual content from a single page."""
+        try:
+            headers = {"User-Agent": "Mozilla/5.0"}
+            r = requests.get(url, headers=headers, timeout=5)
+            r.raise_for_status()
+            soup = BeautifulSoup(r.text, "html.parser")
+            
+            article = soup.find("article")
+            if article:
+                text = " ".join(p.get_text(strip=True) for p in article.find_all("p"))
+            else:
+                text = " ".join(p.get_text(strip=True) for p in soup.find_all("p"))
+            
+            return text
+        except Exception as e:
+            print(f"Failed to scrape {url}: {e}")
+            return None
+
+    def scrape_links_fast(search_results):
+        """Scrape all links from search results quickly (no recursion)."""
+        scraped_data = {}
+        for result in search_results:
+            url = result.get("link")
+            if url:
+                content = scrape_page(url)
+                scraped_data[url] = content
+        return scraped_data
     topic = request.topic
 
     # 1️⃣ Search for recent news/articles
