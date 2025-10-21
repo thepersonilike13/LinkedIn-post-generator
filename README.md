@@ -48,8 +48,8 @@ Demanual AI is a FastAPI-based application that automatically generates professi
 1. Clone the repository:
     
     ```bash
-    git clone <repo_url>
-    cd demanual-ai
+    git clone [<repo_url>](https://github.com/thepersonilike13/LinkedIn-post-generator.git)
+    cd LinkedIn-post-generator
     ```
     
 2. Create a virtual environment and install dependencies:
