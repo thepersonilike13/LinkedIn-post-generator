@@ -1,5 +1,5 @@
 
-# **Demanual AI - LinkedIn Post Generator**
+# **LinkedIn Post Generator**
 
 A FastAPI-based application that automatically generates professional LinkedIn posts based on recent news articles related to a given topic. It scrapes relevant news, summarizes the content using a Google Gemini AI model, and provides a concise post along with a creative image suggestion.
 
